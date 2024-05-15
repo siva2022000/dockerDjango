@@ -1,0 +1,11 @@
+version: '3'
+
+#config to run service
+services:
+  web:
+    build: .  #builds image using docker file in current folder
+    command: python manage.py runserver 0.0.0.0:8000 #all ip adresses on the same network can access this server at port 8000(only accessibble in container)
+    volumes: 
+      - .:/app #source directory on host is mapped to app folder in container. Any changes made to the files in the host directory will immediately reflect inside the container and vice versa.
+    ports:
+      - "8000:8000" #maps host port to container port
